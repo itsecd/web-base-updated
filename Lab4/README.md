@@ -23,7 +23,7 @@ npx puppeteer browsers install chrome
 npm run test
 ```
 
-### Задание 1
+### Задание 1 (Задание 17)
 
 1. Перейти в папку `Задание 1`
 2. В файле `src/Async.ts` выполните следующие задания:
