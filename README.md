@@ -10,30 +10,51 @@
 <th>№</th>
 <th>Название</th>
 <th>Ссылка</th>
+<th>Tenzor</th>
 </tr>
 
 <tr>
 <td>1</td>
 <td>Базовый синтаксис HTML и CSS</td>
 <td><a href="https://github.com/itsecd/web-base-updated/tree/main/Lab1">Ссылка</a></td>
+<th>
+    <a href="https://github.com/tensor-school/task-html">Tenzor 1</a>
+    <a href="https://github.com/tensor-school/task-flexbox">Tenzor 2</a>
+    <a href="https://github.com/tensor-school/task-scripts">Tenzor 3</a>
+</th>
 </tr>
 
 <tr>
 <td>2</td>
 <td>Базовый JavaScript</td>
 <td><a href="https://github.com/itsecd/web-base-updated/tree/main/Lab2">Ссылка</a></td>
+<th>
+    <a href="https://github.com/tensor-school/task-basic-syntax">Tenzor 4</a>
+    <a href="https://github.com/tensor-school/task-cycles">Tenzor 5</a>
+    <a href="https://github.com/tensor-school/task-arrays">Tenzor 6</a>
+    <a href="https://github.com/tensor-school/task-functions">Tenzor 7</a>
+    <a href="https://github.com/tensor-school/task-objects">Tenzor 8</a>
+</th>
 </tr>
 
 <tr>
 <td>3</td>
 <td>Взаимодействие JS с DOM-деревом</td>
 <td><a href="https://github.com/itsecd/web-base-updated/tree/main/Lab3">Ссылка</a></td>
+<th>
+    <a href="https://github.com/tensor-school/task-dom">Tenzor 10</a>
+    <a href="https://github.com/tensor-school/task-js-styles">Tenzor 11</a>
+    <a href="https://github.com/tensor-school/task-events">Tenzor 12</a>
+</th>
 </tr>
 
 <tr>
 <td>4</td>
 <td>Асинхронность в JavaScript</td>
 <td><a href="https://github.com/itsecd/web-base-updated/tree/main/Lab4">Ссылка</a></td>
+<th>
+    <a href="https://github.com/tensor-school/task-async">Tenzor 17</a>
+</th>
 </tr>
 </table>
 
