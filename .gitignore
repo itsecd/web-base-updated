@@ -1,0 +1,4 @@
+node_modules/
+playwright-report/
+test-result/
+App.test.ts-snapshots/
