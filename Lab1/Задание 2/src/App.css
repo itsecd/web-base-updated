@@ -4,7 +4,7 @@ body,
     height: 100%;
     margin: 0;
 }
-.flex-container{
+.flex-container {
     width: 700px;
     height: 300px;
     display: flex;
@@ -12,20 +12,21 @@ body,
     align-items: flex-start;
 }
 
-.flex-container div{
+.flex-container div {
     width: 100px;
     height: 100px;
     background-color: #DAA520;
     border-radius: 50%;
 }
 
-.flex-container div:nth-child(2){
-    align-self:center;
+.flex-container div:nth-child(2) {
+    align-self: center;
 }
 
-.flex-container div:nth-child(4){
-    align-self:center;
+.flex-container div:nth-child(4) {
+    align-self: center;
 }
-.flex-container div:nth-child(3){
+
+.flex-container div:nth-child(3) {
     align-self: flex-end;
 }
