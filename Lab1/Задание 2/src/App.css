@@ -4,3 +4,30 @@ body,
     height: 100%;
     margin: 0;
 }
+.flex-container {
+    width: 700px;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+.flex-container div {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;              
+    background: #DAA520;              
+}
+.circle1 {
+    align-self: flex-start;
+}
+.circle2 {
+    align-self: center;
+}
+.circle3 {
+    align-self: flex-end;
+}
+.circle4 {
+    align-self: center;
+}
+.circle5 {
+     align-self: flex-start;
+}
