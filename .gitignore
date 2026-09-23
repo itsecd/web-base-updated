@@ -1,0 +1,21 @@
+# Зависимости
+node_modules/
+
+# Результаты тестов
+playwright-report/
+test-results/
+
+# Логи
+*.log
+
+# Сборка
+dist/
+build/
+
+# ОС
+.DS_Store
+Thumbs.db
+
+# Редакторы
+.vscode/
+.idea/
