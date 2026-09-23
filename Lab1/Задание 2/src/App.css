@@ -16,18 +16,22 @@ body,
     border-radius: 50%;              
     background: #DAA520;              
 }
-.circle1 {
+.flex-container div:nth-child(1) {
     align-self: flex-start;
 }
-.circle2 {
+
+.flex-container div:nth-child(2) {
     align-self: center;
 }
-.circle3 {
+
+.flex-container div:nth-child(3) {
     align-self: flex-end;
 }
-.circle4 {
+
+.flex-container div:nth-child(4) {
     align-self: center;
 }
-.circle5 {
-     align-self: flex-start;
+
+.flex-container div:nth-child(5) {
+    align-self: flex-start;
 }
