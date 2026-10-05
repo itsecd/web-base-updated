@@ -7,36 +7,35 @@ body,
 .flex-container {
     width : 700px;
     height: 300px;
-    position: relative;
+    display: grid;
+    grid-template-columns: repeat(7, 100px);
+    grid-template-rows: repeat(3, 100px);
 }
 .flex-container div {
     height: 100px;
     width: 100px;
     background-color: #DAA520;
     border-radius: 50%;
-    position: absolute;
 }
-div:nth-child(1) {
-    top: 0;
-    left: 0;
+.flex-container div:nth-child(1) {
+    align-self: start; 
+    grid-column: 1;
 }
-div:nth-child(2) {
-    top: 0;
-    left: 600px;
-    right: 0;
+.flex-container div:nth-child(2) {
+    align-self: start; 
+    grid-column: 7; 
 }
-div:nth-child(3) {
-    top: 100px;
-    left: 150px;
-    right: auto;
+.flex-container div:nth-child(3) {
+    align-self: center; 
+    grid-column: 2; 
+    margin-left: 50px; 
 }
-div:nth-child(4) {
-    top: 100px;
-    left: 450px;
-    right: auto;
+.flex-container div:nth-child(4) {
+    align-self: center; 
+    grid-column: 5; 
+    margin-left: 50px; 
 }
-div:nth-child(5) {
-    top: 200px; 
-    left: 300px; 
-    right: auto;
+.flex-container div:nth-child(5) {
+    align-self: end; 
+    grid-column: 4; 
 }
