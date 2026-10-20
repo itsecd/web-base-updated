@@ -39,5 +39,4 @@ body,
 
     .flex-container div:nth-child(3) {
         align-self: flex-end;
-    }self: flex-start;
-        }
+    }
