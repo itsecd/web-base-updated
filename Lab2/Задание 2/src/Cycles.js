@@ -1,20 +1,39 @@
-/*
-  В функцию rangeSum() приходят два целых неотрицательных числа.
-  Используя цикл for, просуммируйте все четные числа в диапазоне между этими значениями (включительно)
-  и верните итоговый результат.
-*/
-export function rangeSum(start, end) {}
+export function rangeSum(a, b) {
+    const min = Math.min(a, b);
+    const max = Math.max(a, b);
+    let sum = 0;
 
-/*
-  В функцию iterationCount() приходит неотрицательное число.
-  Используя цикл while, выполняйте деление этого числа на два до тех пор, пока результат деления больше 0.1
-  и верните количество потребовавшихся итераций (т.е. сколько раз пришлось выполнить деление).
-*/
-export function iterationCount(a) {}
+    // Цикл for для суммы четных чисел
+    for (let i = min; i <= max; i++) {
+        if (i % 2 === 0) {
+            sum += i;
+        }
+    }
+    return sum;
+}
 
-/*
-  В функцию symbolsReplace() приходит строка текста.
-  Используя цикл do while, замените в тексте каждый третий символ на символ нижнего подчеркивания
-  и верните итоговый результат.
-*/
-export function symbolsReplace(message) {}
+export function iterationCount(num) {
+    let count = 0;
+
+    // Цикл while для деления пополам
+    while (num > 0.1) {
+        num = num / 2;
+        count++;
+    }
+    return count;
+}
+
+export function symbolsReplace(text) {
+    let arr = text.split('');
+    let i = 2; // индекс третьего символа (начинаем с 0)
+
+    // Цикл do while для замены каждого третьего символа
+    if (arr.length >= 3) {
+        do {
+            arr[i] = '_';
+            i += 3; // прыгаем через 3 символа
+        } while (i < arr.length);
+    }
+
+    return arr.join('');
+}
