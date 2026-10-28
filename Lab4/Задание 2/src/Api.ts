@@ -1,16 +1,9 @@
-/**
- * Вспомогательный интерфейс для объекта "пост"
- */
 export interface PostDTO {
     userId: number
     id: number
     title: string
     body: string
 };
-
-/**
- * Вспомогательный интерфейс для объекта "комментарий"
- */
 export interface CommentDTO {
     postId: number
     id: number
@@ -18,10 +11,6 @@ export interface CommentDTO {
     email: string
     body: string
 };
-
-/**
- * Вспомогательный интерфейс для объекта "пользователь"
- */
 export interface UserDTO {
     id: number
     name: string
@@ -46,9 +35,6 @@ export interface UserDTO {
     }
 };
 
-/**
- * Класс для работы с АПИ, который необходимо немного доработать
- */
 export class Api {
     basePath = "";
 
@@ -83,32 +69,37 @@ export class Api {
 
         if (body) fetchParams.body = JSON.stringify(body);
 
-        /**
-         * Здесь необходимо дописать логику базового метода для выполнения запросов
-         */
+        fetchParams.headers = {
+            'Content-Type': 'application/json; charset=UTF-8',
+        };
+        const response = await fetch(`${this.basePath}${url}`, fetchParams);
+        if (!response.ok) {
+            throw new Error(`Ошибка запроса: ${response.status} ${response.statusText}`);
+        }
+        return response.json() as Promise<T>;
     } 
 
     getPosts(): Promise<PostDTO[]> {
-        // Здесь необходимо дописать метод для получения всех постов
+        return this.baseFetch<PostDTO[]>('posts');
     };
 
     getPostByPostId(postId: number): Promise<PostDTO> {
-        // Здесь необходимо дописать метод для получения поста по его id
+        return this.baseFetch<PostDTO>(`posts/${postId}`);
     };
 
     createPost(post: PostDTO): Promise<{id: number}> {
-        // Здесь необходимо дописать метод для создания поста
+        return this.baseFetch<{id: number}>('posts', 'POST', post as unknown as Record<string, unknown>);
     };
 
     getComments(): Promise<CommentDTO[]> {
-        // Здесь необходимо дописать метод для получения всех комментариев
+        return this.baseFetch<CommentDTO[]>('comments');
     };
     
-    getCommentByCommentId(commentId:): Promise<CommentDTO> {
-        // Здесь необходимо дописать метод для получения всех комментариев
+    getCommentByCommentId(commentId: number): Promise<CommentDTO> {
+        return this.baseFetch<CommentDTO>(`comments/${commentId}`);
     };
 
     getUsers(): Promise<UserDTO[]> {
-        // Здесь необходимо дописать метод для получения всех пользователей
+        return this.baseFetch<UserDTO[]>('users');
     };
 };
