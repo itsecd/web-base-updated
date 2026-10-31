@@ -16,7 +16,7 @@ cd ./Задание N
 npm i
 npx puppeteer browsers install chrome
 ```
-
+npm
 3. Каждое задание после выполнения необходимо проверить с помощью команды:
 
 ```bash
