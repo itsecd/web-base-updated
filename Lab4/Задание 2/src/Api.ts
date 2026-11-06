@@ -1,4 +1,4 @@
-/**
+/
  * Вспомогательный интерфейс для объекта "пост"
  */
 export interface PostDTO {
@@ -8,7 +8,7 @@ export interface PostDTO {
     body: string
 };
 
-/**
+/
  * Вспомогательный интерфейс для объекта "комментарий"
  */
 export interface CommentDTO {
@@ -19,7 +19,7 @@ export interface CommentDTO {
     body: string
 };
 
-/**
+/
  * Вспомогательный интерфейс для объекта "пользователь"
  */
 export interface UserDTO {
@@ -46,7 +46,7 @@ export interface UserDTO {
     }
 };
 
-/**
+/
  * Класс для работы с АПИ, который необходимо немного доработать
  */
 export class Api {
@@ -68,9 +68,9 @@ export class Api {
      * ```
      * 
      * @param url Путь, по которому выполняется запрос, он должен быть относительным к this.basePath
-     * @param method Метод запроса, по умлочанию `GET`
+     * @param method Метод запроса, по умлочанию GET
      * @param body (Опционально) Тело запроса в виде объекта
-     * @returns Данные типа `T`, чтобы быть уверенным в том какие данные должны прийти необходимо использовать следующим образом: `this.baseFetch<PostDTO[]>` - данная конструкция означает, что метод `baseFetch` вернёт массив объектов с типом PostDTO
+     * @id70533735 (@returns) Данные типа T, чтобы быть уверенным в том какие данные должны прийти необходимо использовать следующим образом: this.baseFetch<PostDTO[]> - данная конструкция означает, что метод baseFetch вернёт массив объектов с типом PostDTO
      * @throws Текст ошибки
      */
     async baseFetch<T> (
@@ -81,34 +81,40 @@ export class Api {
 
         let fetchParams: RequestInit = { method };
 
-        if (body) fetchParams.body = JSON.stringify(body);
+        if (body) {
+            fetchParams.body = JSON.stringify(body);
+            fetchParams.headers = { 'Content-Type': 'application/json' };
+        }
 
-        /**
-         * Здесь необходимо дописать логику базового метода для выполнения запросов
-         */
+        const response = await fetch(${this.basePath}${url}, fetchParams);
+        if (!response.ok) {
+            throw new Error(Ошибка HTTP: ${response.status});
+        }
+        
+        return response.json() as Promise<T>;
     } 
 
     getPosts(): Promise<PostDTO[]> {
-        // Здесь необходимо дописать метод для получения всех постов
+        return this.baseFetch<PostDTO[]>('posts');
     };
 
     getPostByPostId(postId: number): Promise<PostDTO> {
-        // Здесь необходимо дописать метод для получения поста по его id
-    };
+        return this.baseFetch<PostDTO>(posts/${postId});
+    }
+       
 
-    createPost(post: PostDTO): Promise<{id: number}> {
-        // Здесь необходимо дописать метод для создания поста
-    };
+    createPost(post: PostDTO): Promise<PostDTO> {
+        return this.baseFetch<PostDTO>('posts', 'POST', post);
+    }   
 
     getComments(): Promise<CommentDTO[]> {
-        // Здесь необходимо дописать метод для получения всех комментариев
-    };
-    
-    getCommentByCommentId(commentId:): Promise<CommentDTO> {
-        // Здесь необходимо дописать метод для получения всех комментариев
+        return this.baseFetch<CommentDTO[]>('comments');
+    }
+    getCommentByCommentId(commentId: number): Promise<CommentDTO> {
+       return this.baseFetch<CommentDTO>(comments/${commentId});
     };
 
     getUsers(): Promise<UserDTO[]> {
-        // Здесь необходимо дописать метод для получения всех пользователей
+        return this.baseFetch<UserDTO[]>('users');
     };
 };
