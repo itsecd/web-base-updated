@@ -62,7 +62,7 @@ export class Api {
         const response = await fetch(`${this.basePath}${url}`, fetchParams);
 
         if (!response.ok) {
-            throw new Error(`Ошибка HTTP: ${response.status}`);
+            throw new Error(`Ошибка запроса: ${response.status}`);
         }
 
         return response.json();
