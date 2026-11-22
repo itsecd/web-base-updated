@@ -1,20 +1,27 @@
-/*
-Создайте функции:
-   hasClass(elem, elemСlass),
-   addClass(elem, elemСlass),
-   removeClass(elem, elemСlass),
-   toggleClass(elem, elemСlass),
-которые позволяют проверить, есть ли у элемента заданный CSS-класс, добавить к нему CSS-класс, удалить CSS-класс и переключить CSS-класс.
+/**
+ * Проверяет, есть ли у элемента заданный CSS-класс.
+ */
+export function hasClass(elem, elemClass) {
+    return elem.classList.contains(elemClass);
+}
 
-В функции передаются 2 параметра:
-   elem - DOM-элемент, который проверяется,
-   elemСlass - название класса, которое проверяется.
-*/
+/**
+ * Добавляет к элементу указанный CSS-класс.
+ */
+export function addClass(elem, elemClass) {
+    elem.classList.add(elemClass);
+}
 
-export function hasClass(elem, elemClass) {}
+/**
+ * Удаляет указанный CSS-класс у элемента.
+ */
+export function removeClass(elem, elemClass) {
+    elem.classList.remove(elemClass);
+}
 
-export function addClass(elem, elemClass) {}
-
-export function removeClass(elem, elemClass) {}
-
-export function toggleClass(elem, elemClass) {}
+/**
+ * Переключает CSS-класс у элемента (добавляет, если нет, или удаляет, если есть).
+ */
+export function toggleClass(elem, elemClass) {
+    elem.classList.toggle(elemClass);
+}
