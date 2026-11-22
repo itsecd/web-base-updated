@@ -5,7 +5,7 @@
 export function createButton() {
     const button = document.createElement('button');
     button.textContent = 'Удали меня';
-    
+
     button.addEventListener('click', () => {
         button.remove();
     });
@@ -24,7 +24,7 @@ export function createArrList(arr) {
         const li = document.createElement('li');
         li.textContent = text;
 
-        li.addEventListener('mouseenter', () => {
+        li.addEventListener('mouseover', () => {
             li.setAttribute('title', li.textContent);
         });
 
@@ -49,11 +49,10 @@ export function createLink() {
 
     a.addEventListener('click', (event) => {
         if (!clicked) {
-            event.preventDefault(); // Отменяем переход при первом клике
+            event.preventDefault();
             a.textContent += ` ${a.href}`;
             clicked = true;
         }
-        // При последующих кликах event.preventDefault() не вызывается, происходит стандартный переход
     });
 
     document.body.appendChild(a);
@@ -63,7 +62,7 @@ export function createLink() {
  * 4. Генерирует разметку списка и кнопки, вставляет в body:
  * <ul><li>Пункт</li></ul>
  * <button>Добавить пункт</button>
- * При клике по li добавляется восклицательный знак в конец текста.
+ * При клике по элементу li добавляется восклицательный знак в конец текста.
  * При клике по button добавляется новый li с текстом "Пункт" (с поддержкой клика для него).
  */
 export function createList() {
@@ -71,7 +70,6 @@ export function createList() {
     const li = document.createElement('li');
     li.textContent = 'Пункт';
 
-    // Функция добавления восклицательного знака
     const addExclamation = (item) => {
         item.textContent += '!';
     };
