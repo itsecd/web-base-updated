@@ -1,27 +1,16 @@
-/**
- * Вспомогательный интерфейс для объекта "пост"
- */
 export interface PostDTO {
     userId: number
     id: number
     title: string
     body: string
 };
-
-/**
- * Вспомогательный интерфейс для объекта "комментарий"
- */
 export interface CommentDTO {
     postId: number
     id: number
-    name: string 
+    name: string
     email: string
     body: string
 };
-
-/**
- * Вспомогательный интерфейс для объекта "пользователь"
- */
 export interface UserDTO {
     id: number
     name: string
@@ -45,10 +34,6 @@ export interface UserDTO {
         bs: string
     }
 };
-
-/**
- * Класс для работы с АПИ, который необходимо немного доработать
- */
 export class Api {
     basePath = "";
 
@@ -56,59 +41,48 @@ export class Api {
         this.basePath = "https://jsonplaceholder.typicode.com/";
     }
 
-    /**
-     * 
-     * Базовый и минимально достаточный метод для выполнения запросов к Api 
-     * 
-     * @example Пример использования:
-     * ```typescript
-     * methodForGetSomeVeryImportantData() {
-     *      return this.baseFetch('endpointForVeryImportantData');
-     * }
-     * ```
-     * 
-     * @param url Путь, по которому выполняется запрос, он должен быть относительным к this.basePath
-     * @param method Метод запроса, по умлочанию `GET`
-     * @param body (Опционально) Тело запроса в виде объекта
-     * @returns Данные типа `T`, чтобы быть уверенным в том какие данные должны прийти необходимо использовать следующим образом: `this.baseFetch<PostDTO[]>` - данная конструкция означает, что метод `baseFetch` вернёт массив объектов с типом PostDTO
-     * @throws Текст ошибки
-     */
-    async baseFetch<T> (
+    async baseFetch<T>(
         url: string,
         method: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE' = 'GET',
         body?: Record<string, unknown>
     ): Promise<T> {
-
         let fetchParams: RequestInit = { method };
 
-        if (body) fetchParams.body = JSON.stringify(body);
+        if (body) {
+            fetchParams.body = JSON.stringify(body);
+            fetchParams.headers = { 'Content-Type': 'application/json' };
+        }
 
-        /**
-         * Здесь необходимо дописать логику базового метода для выполнения запросов
-         */
-    } 
+        const response = await fetch(`${this.basePath}${url}`, fetchParams);
 
-    getPosts(): Promise<PostDTO[]> {
-        // Здесь необходимо дописать метод для получения всех постов
+        if (!response.ok) {
+            throw new Error(`Ошибка запроса: ${response.status}`);
+        }
+
+        return response.json() as Promise<T>;
+    }
+
+    async getPosts(): Promise<PostDTO[]> {
+        return this.baseFetch<PostDTO[]>('posts');
     };
 
-    getPostByPostId(postId: number): Promise<PostDTO> {
-        // Здесь необходимо дописать метод для получения поста по его id
+    async getPostByPostId(postId: number): Promise<PostDTO> {
+        return this.baseFetch<PostDTO>(`posts/${postId}`);
     };
 
-    createPost(post: PostDTO): Promise<{id: number}> {
-        // Здесь необходимо дописать метод для создания поста
+    async createPost(post: PostDTO): Promise<{ id: number }> {
+        return this.baseFetch<{ id: number }>('posts', 'POST', post);
     };
 
-    getComments(): Promise<CommentDTO[]> {
-        // Здесь необходимо дописать метод для получения всех комментариев
-    };
-    
-    getCommentByCommentId(commentId:): Promise<CommentDTO> {
-        // Здесь необходимо дописать метод для получения всех комментариев
+    async getComments(): Promise<CommentDTO[]> {
+        return this.baseFetch<CommentDTO[]>('comments');
     };
 
-    getUsers(): Promise<UserDTO[]> {
-        // Здесь необходимо дописать метод для получения всех пользователей
+    async getCommentByCommentId(commentId: number): Promise<CommentDTO> {
+        return this.baseFetch<CommentDTO>(`comments/${commentId}`);
+    };
+
+    async getUsers(): Promise<UserDTO[]> {
+        return this.baseFetch<UserDTO[]>('users');
     };
 };
